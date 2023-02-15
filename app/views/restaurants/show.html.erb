@@ -8,4 +8,16 @@
 
   <p><%= link_to "+ Add a review", new_restaurant_review_path(@restaurant) %></p>
 
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item">
+      <p><%= review.content %> (Rating: <%= review.rating %>)</p>
+      <%= link_to "Delete",
+        review_path(review),
+        data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+      %>
+    </li>
+  <% end %>
+
+  <%= link_to "<< Go back to all restaurants", restaurants_path %>
+
 </div>
